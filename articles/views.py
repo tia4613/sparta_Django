@@ -8,8 +8,13 @@ def users(request):
 	return render(request, "users.html")
 
 def hello(request):
-	# 변수 선언 - 이름을 바꿔준다
+	name = 'hwan'
+	tags = ["python","css","html"]
+	books = ['어린왕자', '백설공주','신데렐라']
+
 	context = { 
-		"name":"hwan",
+		"name": name,
+		"tags": tags,
+		"books": books,
 	}
 	return render(request, "hello.html",context)

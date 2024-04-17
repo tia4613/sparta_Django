@@ -7,5 +7,12 @@
 </head>
 <body>
     <h1> hello! {{ name }} </h1>
+    <p> 첫번째 태그는 {{ tags.0 |upper }} </p>
+    <p> 모든 책 목록</p>
+    <ul>
+        {% for book in books %}
+        <li>{{book}}</li>
+        {% endfor %}
+    </ul>
 </body>
 </html>
