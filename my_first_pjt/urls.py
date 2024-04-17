@@ -16,9 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from articles import view
+from articles import views
 
-
+# urlpatterns는 어떤 path로 들어왔을 때 어디로 보낼지
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('index/', views.index),
+    path('users/', views.users),
+    path('hello/', views.hello),
 ]
