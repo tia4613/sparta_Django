@@ -21,3 +21,6 @@ def hello(request):
 
 def data_throw(request):
   return render(request, "data_throw.html")
+
+def data_catch(request):
+  return render(request, "data_catch.html")  
