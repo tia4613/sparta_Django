@@ -4,7 +4,6 @@ from . import views #.은 내 위치
 urlpatterns = [
 
     path('', views.articles, name='articles'),
-    path("new/", views.new, name="new"),
     path("create/", views.create, name="create"),
     path("<int:pk>/", views.detail, name="detail"),
     path("<int:pk>/delete/", views.delete, name="delete"),

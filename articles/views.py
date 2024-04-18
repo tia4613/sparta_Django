@@ -16,18 +16,17 @@ def detail(request, pk):
   context = { "article": article,}
   return render(request, "detail.html", context)
 
-def new(request):
-  forms = ArticleForm()
-  context = {"forms":forms}
-  return render(request, "new.html", context)
-
 def create(request):
-    title = request.POST.get("title")
-    content = request.POST.get("content")
+  if request.method == "POST":
+      form = ArticleForm(request.POST)
+      if form.is_valid():
+          article = form.save()
+          return redirect("detail", article.id)
+  else:
+      form = ArticleForm()
 
-    article = Article(title=title, content=content)
-    article.save()
-    return redirect("detail", article.id)
+  context = {"forms": forms}
+  return render(request, "create.html", context)
 
 def edit(request, pk):
 	article = Article.objects.get(pk=pk)
