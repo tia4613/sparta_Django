@@ -10,6 +10,6 @@ urlpatterns = [
     path("<int:pk>/delete/", views.delete, name="delete"),
     path("<int:pk>/update/", views.update, name="update"),
 
-    path('data_throw/', views.data_throw, name='data_throw'),
-    path('data_catch/', views.data_catch, name='data_catch'),
+    path('data_throw/', views.data_throw, name='throw'),
+    path('data_catch/', views.data_catch, name='catch'),
 ]
