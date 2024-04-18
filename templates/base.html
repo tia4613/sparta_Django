@@ -8,6 +8,10 @@
   <body>
     <div class="navbar">
       <a href="{% url 'accounts:login'%}">로그인</a>
+      <form action="{% url 'accounts:logout' %}" method='POST'>
+        {% csrf_token %}
+        <input type="submit" value="로그아웃"></input>
+      </form>
     </div>
 
     <div class="container">
