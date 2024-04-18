@@ -21,11 +21,12 @@ from articles import views
 # urlpatterns는 어떤 path로 들어왔을 때 어디로 보낼지
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('index/', views.index),
-    path('users/', views.users),
+    path('index/', views.index),   
     path('hello/', views.hello),
-
     path('data_throw/', views.data_throw),
     path('data_catch/', views.data_catch),
+
+    path('users/', views.users),
+    path("users/<str:username>/", views.profile),
 
 ]
