@@ -6,6 +6,13 @@
     <title>Document</title>
   </head>
   <body>
-    {% block content %} {% endblock content %}
+    <div class="navbar">
+      <a href="{% url 'accounts:login'%}">로그인</a>
+    </div>
+
+    <div class="container">
+      {% block content %}
+      {% endblock content %}
+    </div>
   </body>
 </html>
