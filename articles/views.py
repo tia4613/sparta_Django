@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Article
 
 
@@ -16,17 +16,12 @@ def new(request):
     return render(request, "new.html")
 
 def create(request):
-    # GET 방식으로 전달된 데이터를 받아서
-    title = request.GET.get("title")
-    content = request.GET.get("content")
+    title = request.POST.get("title")
+    content = request.POST.get("content")
 
-    # 받은 데이터를 Article 모델을 이용해서 저장
     article = Article(title=title, content=content)
     article.save()
-    context = {
-        "article": article,
-    }
-    return render(request, "create.html", context)
+    return redirect("articles")
 
 def data_throw(request):
   return render(request, "data_throw.html")

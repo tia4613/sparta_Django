@@ -3,7 +3,8 @@
 {% block content %}
   <h1>New Article</h1>
 
-  <form action="{% url 'create' %}" method="GET">
+  <form action="{% url 'create' %}" method="POST">
+    {% csrf_token %}
     <label for="title">제목</label>
     <input type="text" name="title" id="title"><br><br>
 
