@@ -8,5 +8,10 @@
   <p>수정일시: {{ article.updated_at }}</p>
 
   <a href="{% url 'articles' %}">목록 보기</a>
-
+  <hr>
+  <form action="{% url 'delete' article.pk %}" method="POST">
+      {% csrf_token %}
+      <input type="submit" value="글삭제">
+  </form>
+  
 {% endblock content %}

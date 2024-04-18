@@ -30,6 +30,13 @@ def create(request):
     article.save()
     return redirect("detail", article.id)
 
+def delete(request, pk):
+  article = Article.objects.get(pk=pk)
+  if request.method == "POST":
+      article.delete()
+      return redirect("articles")
+  return redirect("detail", article.pk)
+
 def data_throw(request):
   return render(request, "data_throw.html")
 
