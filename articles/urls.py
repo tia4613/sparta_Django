@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views #.은 내 위치
 
+app_name = 'articles'
 urlpatterns = [
 
     path('', views.articles, name='articles'),

@@ -2,13 +2,13 @@
 
 {% block content %}
   <h1> articles </h1>
-  <a href="{% url 'create' %}">
+  <a href="{% url 'articles:create' %}">
     <button> 새로운 글 작성</button>
   </a>
   <ul>
     {% for article in articles %}
       <li>
-        <a href="{% url 'detail' article.pk %}">
+        <a href="{% url 'articles:detail' article.pk %}">
         <p>글 번호 : {{ article.id }}</p>
         <p>글 제목 : {{ article.title }}</p>
         </a>
