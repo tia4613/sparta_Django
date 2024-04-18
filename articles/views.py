@@ -28,7 +28,7 @@ def create(request):
 
     article = Article(title=title, content=content)
     article.save()
-    return redirect("articles")
+    return redirect("detail", article.id)
 
 def data_throw(request):
   return render(request, "data_throw.html")
