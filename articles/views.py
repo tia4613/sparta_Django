@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Article
+from .forms import ArticleForm
 
 
 def index(request):
@@ -7,20 +8,18 @@ def index(request):
 
 def articles(request):
   articles = Article.objects.all().order_by("-created_at")
-  context = {
-        "articles": articles,
-    }
+  context = { "articles": articles,}
   return render(request, "articles.html", context)
 
 def detail(request, pk):
   article = Article.objects.get(pk=pk)
-  context = {
-    "article": article,
-    }
+  context = { "article": article,}
   return render(request, "detail.html", context)
 
 def new(request):
-    return render(request, "new.html")
+  forms = ArticleForm()
+  context = {"forms":forms}
+  return render(request, "new.html", context)
 
 def create(request):
     title = request.POST.get("title")
