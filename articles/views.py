@@ -4,17 +4,8 @@ from django.shortcuts import render
 def index(request):
   return render(request, "index.html")
 
-def hello(request):
-  name = 'hwan'
-  tags = ["python","css","html"]
-  books = ['어린왕자', '백설공주','신데렐라']
-
-  context = { 
-    "name": name,
-    "tags": tags,
-    "books": books,
-  }
-  return render(request, "hello.html",context)
+def articles(request):
+  return render(request, "articles.html")
 
 def data_throw(request):
   return render(request, "data_throw.html")
