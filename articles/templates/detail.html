@@ -9,7 +9,7 @@
 
   <a href="{% url 'articles' %}">목록 보기</a>
   <hr>
-  <a href="{% url 'edit' article.pk %}"><button>글수정</button></a>
+  <a href="{% url 'update' article.pk %}"><button>글수정</button></a>
   
   <form action="{% url 'delete' article.pk %}" method="POST">
       {% csrf_token %}
