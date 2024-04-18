@@ -12,6 +12,13 @@ def articles(request):
     }
   return render(request, "articles.html", context)
 
+def detail(request, pk):
+  article = Article.objects.get(pk=pk)
+  context = {
+    "article": article,
+    }
+  return render(request, "detail.html", context)
+
 def new(request):
     return render(request, "new.html")
 
