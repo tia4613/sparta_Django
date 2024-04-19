@@ -3,8 +3,10 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.views.decorators.http import require_POST, require_http_methods
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import PasswordChangeForm, UserCreationForm
+from django.contrib.auth import update_session_auth_hash
 from .forms import CustomUserChangeForm
+from django.contrib.auth.decorators import login_required
 
 
 @require_http_methods(["GET", "POST"])
@@ -57,3 +59,10 @@ def update(request):
         form = CustomUserChangeForm(instance=request.user)
     context = {"form": form}
     return render(request, "accounts/update.html", context)
+
+@login_required
+@require_http_methods(["GET", "POST"])
+def change_password(request):
+    form = PasswordChangeForm(request.user)
+    context = {"form": form}
+    return render(request, "accounts/change_password.html", context)
