@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Article
-from .forms import ArticleForm
+from .forms import ArticleForm, CommentForm
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST, require_http_methods
 
@@ -15,7 +15,13 @@ def articles(request):
 
 def detail(request, pk):
   article = get_object_or_404(Article, pk=pk)
-  context = { "article": article,}
+  comment_form = CommentForm()
+  comments = article.comments.all().order_by("-pk")
+  context = { 
+    "article": article,
+    "comment_form" : comment_form,
+    "comments" : comments
+  }
   return render(request, "articles/detail.html", context)
 
 @login_required
@@ -52,6 +58,23 @@ def delete(request, pk):
     article = get_object_or_404(Article, pk=pk)
     article.delete()
   return redirect("articles:articles")
+
+@require_POST
+def comment_create(request, pk):
+    article = get_object_or_404(Article, pk=pk)
+    form = CommentForm(request.POST)
+    if form.is_valid():
+        comment = form.save(commit=False)
+        comment.article = article
+        comment.save()
+    return redirect("articles:detail", article.pk)
+
+
+
+
+
+
+
 
 def data_throw(request):
   return render(request, "articles/data_throw.html")
