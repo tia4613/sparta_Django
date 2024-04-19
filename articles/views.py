@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from .models import Article
 from .forms import ArticleForm
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_http_methods
 
 
 def index(request):
@@ -16,6 +18,7 @@ def detail(request, pk):
   context = { "article": article,}
   return render(request, "articles/detail.html", context)
 
+@login_required
 def create(request):
   if request.method == "POST":
       form = ArticleForm(request.POST)

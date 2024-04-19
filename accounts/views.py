@@ -10,7 +10,8 @@ def login(request):
         form = AuthenticationForm(data=request.POST)
         if form.is_valid():
             auth_login(request, form.get_user())
-            return redirect("index")
+            next_url = request.GET.get("next") or "index"
+            return redirect(next_url)
     else:
         form = AuthenticationForm()
     context = {"form": form}
