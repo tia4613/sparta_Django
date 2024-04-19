@@ -37,3 +37,10 @@ def signup(request):
         form = UserCreationForm()
     context = {"form": form}
     return render(request, "accounts/signup.html", context)
+
+@require_POST
+def delete(request):
+    if request.user.is_authenticated:
+        request.user.delete()
+        auth_logout(request)
+    return redirect("index")
