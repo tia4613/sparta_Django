@@ -46,12 +46,12 @@ def update(request, pk):
     }
     return render(request, "articles/update.html", context)
 
+@require_POST
 def delete(request, pk):
-  article = get_object_or_404(Article, pk=pk)
-  if request.method == "POST":
-      article.delete()
-      return redirect("articles:articles")
-  return redirect("articles:detail", article.pk)
+  if request.user.is_authenticated:
+    article = get_object_or_404(Article, pk=pk)
+    article.delete()
+  return redirect("articles:articles")
 
 def data_throw(request):
   return render(request, "articles/data_throw.html")
