@@ -12,7 +12,7 @@ def articles(request):
   return render(request, "articles/articles.html", context)
 
 def detail(request, pk):
-  article = Article.objects.get(pk=pk)
+  article = get_object_or_404(Article, pk=pk)
   context = { "article": article,}
   return render(request, "articles/detail.html", context)
 
@@ -29,7 +29,7 @@ def create(request):
   return render(request, "articles/create.html", context)
 
 def update(request, pk):
-    article = Article.objects.get(pk=pk)
+    article = get_object_or_404(Article, pk=pk)
     if request.method == "POST":
         form = ArticleForm(request.POST, instance=article)
         if form.is_valid():
@@ -44,7 +44,7 @@ def update(request, pk):
     return render(request, "articles/update.html", context)
 
 def delete(request, pk):
-  article = Article.objects.get(pk=pk)
+  article = get_object_or_404(Article, pk=pk)
   if request.method == "POST":
       article.delete()
       return redirect("articles:articles")
